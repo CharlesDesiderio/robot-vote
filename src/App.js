@@ -7,6 +7,7 @@ import Main from './components/Main';
 const App = () => {
   const initialUserData = {
     loggedIn: false,
+    token: '',
     id: '',
     name: '',
     email: '',
@@ -18,6 +19,7 @@ const App = () => {
   const updateUserData = (data) => {
     let newUserData = {
       loggedIn: true,
+      token: '',
       id: data.id,
       name: data.name,
       email: data.email,
@@ -62,6 +64,7 @@ const App = () => {
           .then((data) => {
             let newUserData = {
               loggedIn: true,
+              token: token.token,
               id: data.id,
               name: data.name,
               email: data.email,

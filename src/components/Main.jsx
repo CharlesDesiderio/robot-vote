@@ -1,11 +1,14 @@
 import UserContext from "../contexts/UserContext"
+import NavBar from './NavBar'
+import Robots from "./Robots"
 
 const Main = () => {
   return (
     <UserContext.Consumer>
       {context => (
         <div>
-          Name: {context.userData.name}
+          <NavBar />
+          <Robots />
         </div>
       )}
       </UserContext.Consumer>
