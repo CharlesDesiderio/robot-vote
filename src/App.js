@@ -14,6 +14,7 @@ const App = () => {
   }
 
   const [userData, setUserData] = useState(initialUserData)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const updateUserData = (data) => {
     let newUserData = {
@@ -31,8 +32,6 @@ const App = () => {
       password: password
     }
 
-    console.log(loginData)
-
     fetch('https://mondo-robot-art-api.herokuapp.com/auth/session', {
       method: 'POST',
       headers: {
@@ -40,9 +39,14 @@ const App = () => {
         'Content-Type': 'application/json'
       }, body: JSON.stringify(loginData)
     })
-    .then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw new Error('Failed to login. Please check credentials and try again.')
+      }
+    })
     .then(token => {
-      console.log(token)
 
       fetch('https://mondo-robot-art-api.herokuapp.com/auth/session', {
         method: 'GET',
@@ -63,11 +67,14 @@ const App = () => {
         setUserData(newUserData)
       })
     })
+    .catch((error) => {
+      setErrorMessage('Failed to login. Please check credentials and try again.')
+    })
   }
 
   return (
     <div>
-      <UserContext.Provider value={{userData, updateUserData, attemptLogin}}>
+      <UserContext.Provider value={{userData, updateUserData, attemptLogin, errorMessage}}>
         { userData.loggedIn ? <Main /> : <Authentication />}
       </UserContext.Provider>
     </div>
