@@ -1,3 +1,4 @@
+import RobotAdminControl from "./RobotAdminControl"
 import RobotTotalControl from "./RobotTotalControl"
 import RobotVoteControl from "./RobotVoteControl"
 
@@ -9,6 +10,8 @@ const RobotCard = (props) => {
         return <RobotVoteControl getRobots={props.getRobots} id={props.id} voteCast={props.voteCast} voteCastFor={props.voteCastFor} />
       case 'robotResults':
         return <RobotTotalControl voteCount={props.voteCount} totalVotes={props.totalVotes} />
+      case 'adminView': 
+        return <RobotAdminControl getRobots={props.getRobots} id={props.id} />
       default: 
         return
     }

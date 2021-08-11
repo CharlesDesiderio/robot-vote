@@ -7,6 +7,7 @@ import NavBar from './components/NavBar'
 import Robots from './components/Robots'
 import { Redirect } from 'react-router-dom';
 import RobotResults from './components/RobotResults';
+import AdminView from './components/AdminView';
 
 const App = () => {
   
@@ -131,6 +132,7 @@ const App = () => {
             <Route path="/user/" component={NavBar} />
             <Route path="/user/robots" component={Robots} />
             <Route path="/user/results" component={RobotResults} />
+            <Route path="/user/admin" component={AdminView} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>
