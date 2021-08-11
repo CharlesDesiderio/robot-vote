@@ -1,12 +1,17 @@
+import { BrowserRouter, Route } from 'react-router-dom'
+
 import UserContext from "../contexts/UserContext"
+import NavBar from './NavBar'
+import Robots from "./Robots"
 
 const Main = () => {
   return (
     <UserContext.Consumer>
       {context => (
-        <div>
-          Name: {context.userData.name}
-        </div>
+        <BrowserRouter>
+            <Route path="/robots" component={Robots} />
+            <Route path="/" component={NavBar} />
+        </BrowserRouter>
       )}
       </UserContext.Consumer>
   )
