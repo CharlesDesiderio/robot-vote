@@ -37,7 +37,7 @@ const Robots = () => {
   return (
     <div>
       {robots.map((robot) => {
-        return <RobotCard name={robot.name} url={robot.url} id={robot.id} />;
+        return <RobotCard name={robot.name} url={robot.url} id={robot.id} from="robotVote" />;
       })}
     </div>
   );

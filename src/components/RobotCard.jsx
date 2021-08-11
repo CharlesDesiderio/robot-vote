@@ -1,9 +1,22 @@
+import RobotVoteControl from "./RobotVoteControl"
+
 const RobotCard = (props) => {
+
+  const controlSelect = () => {
+    switch(props.from) {
+      case 'robotVote':
+        return <RobotVoteControl />
+      default: 
+        return
+    }
+  }
 
   return (
     <div>
-      {props.name}
-      <img src={props.url} />
+      <h2>{props.name}</h2>
+      <img alt={props.name} src={props.url} />
+
+      {controlSelect()}
     </div>
   )
 }

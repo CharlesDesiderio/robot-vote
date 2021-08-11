@@ -9,6 +9,7 @@ const NavBar = () => {
             <li>Logo</li>
             <li>Robots</li>
             <li>Results</li>
+            { context.userData.email === 'admin@mondorobot.com' ? <li>Admin</li> : '' }
           </ul>
           <ul>
             <li>{context.userData.name}</li>
