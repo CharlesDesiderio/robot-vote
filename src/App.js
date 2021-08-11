@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import UserContext from './contexts/UserContext';
 import Authentication from './components/Authentication';
-import Main from './components/Main';
+import NavBar from './components/NavBar'
+import Robots from './components/Robots'
+import { Redirect } from 'react-router-dom';
 
 const App = () => {
+  
   const initialUserData = {
     loggedIn: false,
     token: '',
@@ -118,10 +122,15 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider
-        value={{ userData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }}
-      >
-        {userData.loggedIn ? <Main /> : <Authentication />}
+      <UserContext.Provider value={{ userData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }} >
+        <BrowserRouter>
+          <Route exact path="/">
+            {userData.loggedIn ? <Redirect to="/user/robots" /> : <Authentication />}
+          </Route>
+            <Route path="/user/" component={NavBar} />
+            <Route path="/user/robots" component={Robots} />
+
+        </BrowserRouter>
       </UserContext.Provider>
     </div>
   );
