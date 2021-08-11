@@ -6,6 +6,7 @@ import Authentication from './components/Authentication';
 import NavBar from './components/NavBar'
 import Robots from './components/Robots'
 import { Redirect } from 'react-router-dom';
+import RobotResults from './components/RobotResults';
 
 const App = () => {
   
@@ -14,7 +15,7 @@ const App = () => {
     token: '',
     id: '',
     name: '',
-    email: '',
+    email: ''
   };
 
   const [userData, setUserData] = useState(initialUserData);
@@ -129,7 +130,7 @@ const App = () => {
           </Route>
             <Route path="/user/" component={NavBar} />
             <Route path="/user/robots" component={Robots} />
-
+            <Route path="/user/results" component={RobotResults} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>
