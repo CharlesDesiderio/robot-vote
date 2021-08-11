@@ -11,8 +11,6 @@ const Main = () => {
         <BrowserRouter>
             <Route path="/robots" component={Robots} />
             <Route path="/" component={NavBar} />
-            {/* <NavBar /> */}
-            {/* <Robots /> */}
         </BrowserRouter>
       )}
       </UserContext.Consumer>
