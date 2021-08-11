@@ -5,6 +5,7 @@ import RobotCard from './RobotCard';
 const RobotResults = () => {
   let [robots, setRobots] = useState([]);
   let [votes, setVotes] = useState([]);
+  let [dataLoaded, setDataLoaded] = useState(false);
 
   const UserContextData = useContext(UserContext);
 
@@ -46,6 +47,7 @@ const RobotResults = () => {
           })
           .then((data) => {
             setVotes(data)
+            setDataLoaded(true)
           })
 
       })
@@ -57,13 +59,13 @@ const RobotResults = () => {
 console.log('votes', votes)
 console.log(robots)
 
-  return (
+  return dataLoaded ? (
     <div>
       {robots.map((robot) => {
         return <RobotCard name={robot.name} url={robot.url} id={robot.id} totalVotes={votes.length} voteCount={votes.filter((vote) => vote.robot === robot.id).length} from="robotResults" />;
       })}
     </div>
-  )
+  ) : 'loading...'
 }
 
 export default RobotResults

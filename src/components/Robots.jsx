@@ -22,6 +22,7 @@ const Robots = () => {
       .then((response) => {
         if (response.ok) {
           console.log('deleted')
+          getRobots()
         } else {
           throw new Error('Vote Delete Failed');
         }
@@ -30,9 +31,11 @@ const Robots = () => {
       .catch((error) => {
         console.log(error);
       });
+
+      
   }
 
-  useEffect(() => {
+  const getRobots = () => {
     console.log(UserContextData);
 
     fetch('https://mondo-robot-art-api.herokuapp.com/robots', {
@@ -90,6 +93,10 @@ const Robots = () => {
         .catch((error) => {
           console.log(error);
         });
+  }
+
+  useEffect(() => {
+    getRobots()
 
   }, []);
 
@@ -97,7 +104,7 @@ const Robots = () => {
     <div>
       {userVoteData.voteId ? <button onClick={deleteVote}>Delete Vote</button> : ''}
       {robots.map((robot) => {
-        return <RobotCard name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} from="robotVote" />;
+        return <RobotCard name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} getRobots={getRobots} from="robotVote" />;
       })}
     </div>
   ) : 'loading';

@@ -6,11 +6,12 @@ const RobotVoteControl = (props) => {
   const UserContextData = useContext(UserContext);
 
   const castVote = () => {
-    console.log(props.id)
 
     let voteData = {
       robot: props.id
     }
+    console.log(voteData)
+    console.log(UserContextData.userData.token)
 
     fetch('https://mondo-robot-art-api.herokuapp.com/votes/', {
       method: 'POST',
@@ -18,8 +19,8 @@ const RobotVoteControl = (props) => {
         'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
         Authorization: `Bearer ${UserContextData.userData.token}`,
         'Content-Type': 'application/json',
-        body: JSON.stringify(voteData)
       },
+      body: JSON.stringify(voteData)
     })
       .then((response) => {
         console.log(response)
@@ -31,11 +32,11 @@ const RobotVoteControl = (props) => {
       })
       .then((data) => {
         console.log(data)
+        props.getRobots()
       })
       .catch((error) => {
         console.log(error);
       });
-
 
   }
 
