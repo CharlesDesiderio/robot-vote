@@ -26,7 +26,7 @@ const RobotAdminControl = (props) => {
 
   return (
     <div>
-      <button>Edit</button>
+      <button onClick={() => alert(`404 Feature Not Found`)}>Edit</button>
       <button onClick={deleteRobot}>Delete</button>
     </div>
   )

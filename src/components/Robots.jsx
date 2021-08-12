@@ -27,7 +27,6 @@ const Robots = () => {
           throw new Error('Vote Delete Failed');
         }
       })
-
       .catch((error) => {
         console.log(error);
       });
