@@ -41,7 +41,7 @@ const AdminView = () => {
 
   return robots.length > 0 ? (
     <div>
-      <AddNewRobotCard />
+      <AddNewRobotCard getRobots={getRobots} />
       {robots.map((robot) => (
         <RobotCard name={robot.name} url={robot.url} id={robot.id} getRobots={getRobots} from="adminView" />
       ))}
