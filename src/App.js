@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
 import UserContext from './contexts/UserContext';
 import Authentication from './components/Authentication';
 import NavBar from './components/NavBar'
 import Robots from './components/Robots'
-import { Redirect } from 'react-router-dom';
 import RobotResults from './components/RobotResults';
+import AdminView from './components/AdminView';
 
 const App = () => {
   
@@ -123,7 +123,7 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider value={{ userData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }} >
+      <UserContext.Provider value={{ userData, setUserData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }} >
         <BrowserRouter>
           <Route exact path="/">
             {userData.loggedIn ? <Redirect to="/user/robots" /> : <Authentication />}
@@ -131,6 +131,7 @@ const App = () => {
             <Route path="/user/" component={NavBar} />
             <Route path="/user/robots" component={Robots} />
             <Route path="/user/results" component={RobotResults} />
+            <Route path="/user/admin" component={AdminView} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>
