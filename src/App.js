@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
+import './style/global.css'
+
 import UserContext from './contexts/UserContext';
 import Authentication from './components/Authentication';
 import NavBar from './components/NavBar'
@@ -122,7 +124,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className='main'>
       <UserContext.Provider value={{ userData, setUserData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }} >
         <BrowserRouter>
           <Route exact path="/">
