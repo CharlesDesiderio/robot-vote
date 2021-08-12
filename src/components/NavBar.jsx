@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import UserContext from "../contexts/UserContext"
+import logo from '../images/MR-Logo 1.svg'
 
 const NavBar = () => {
 
@@ -42,18 +43,19 @@ const NavBar = () => {
   return UserContextData.userData.loggedIn ? (
     <UserContext.Consumer>
       {context => (
-        <div>
+        <nav>
+
           <ul>
-            <li>Logo</li>
+            <li><img className="nav-logo" alt="Mondo Robot Logo" src={logo} /></li>
             <li><Link to="/user/robots">Robots</Link></li>
             <li><Link to="/user/results">Results</Link></li>
             { context.userData.email === 'admin@mondorobot.com' ? <li><Link to="/user/admin">Admin</Link></li> : '' }
           </ul>
-          <ul>
+          <ul className="user-interactions">
             <li>{context.userData.name}</li>
-            <li><button onClick={logOut}>Log Out</button></li>
+            <li className="log-out" onClick={logOut}>Log Out</li>
           </ul>
-        </div>
+        </nav>
       )}
     </UserContext.Consumer>
   ) : <Redirect to='/' />
