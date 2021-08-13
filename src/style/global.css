@@ -18,14 +18,24 @@ button, input {
   border: none;
 }
 
+button:disabled {
+  background-color: var(--gray-1);
+  color: var(--gray-2)
+}
+
 input {
   border: 1px solid var(--gray-1);
   font-size: 22px;
   padding: 20px;
 }
 
+h1, h2, h3 {
+  color: var(--gray-3);
+}
+
 h1 {
   font-size: 60px;
+  padding: 60px 0;
 }
 
 h2 {
@@ -41,19 +51,29 @@ h3 {
   margin: auto;
 }
 
-.input-box {
+.input-box, .new-robot-input-box {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.input-box label {
+.input-box label, .new-robot-input-box label {
   position: absolute;
   top: -12px;
   left: 70px;
   background-color: white;
   padding: 0 6px;
   color: var(--gray-2)
+}
+
+.new-robot-input-box {
+  width: 349px;
+  margin: auto;
+  margin-bottom: 25px;
+}
+
+.new-robot-input-box label {
+  left: 20px;
 }
 
 .register, .login {
@@ -129,6 +149,10 @@ a {
   margin-bottom: 100px;
 }
 
+.mobileNav {
+  display: none;
+}
+
 nav {
   width: 100%;
   margin: 0 auto;
@@ -138,6 +162,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  border-bottom: 1px solid var(--gray-1);
 }
 
 ul {
@@ -167,6 +192,46 @@ li a:visited {
   padding-left: 100px;
 }
 
+.nav-name {
+  text-transform: capitalize;
+}
+
+.mobileNavMenu {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--gray-3);
+  z-index: 2;
+  display: none;
+  
+}
+
+.mobileNavMenu li, .mobileNavMenu a, .mobileNavMenu a:visited, .mobileNavMenu h2 {
+  padding: 0;
+  justify-content: center;
+  color: var(--white);
+  margin-bottom: 65px;
+}
+
+.xBox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.xIcon {
+  padding: 50px;
+  right: 0;
+}
+
+.mobileNavLi {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  z-index: 5;
+}
+
 .user-interactions li {
   color: var(--gray-2);
   font-weight: normal;
@@ -175,4 +240,366 @@ li a:visited {
 .log-out {
   padding-right: 100px;
   cursor: pointer;
+}
+
+.robots, .robot-results, .admin-view {
+  width: 1440px;
+  margin: auto;
+  padding: 0 100px;
+}
+
+.robots, .robot-results, .admin-view h1 {
+  padding-left: 15px;
+}
+
+.deleteVote {
+  display: block;
+  width: 160px;
+  height: 50px;
+  margin: auto;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--gray-3);
+}
+
+.robot-map {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 397px);
+  grid-gap: 25px;
+}
+
+.robot-card, .new-robot-card {
+  width: 397px;
+  height: 539px;
+  margin: 15px 12px;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--gray-1);
+  box-shadow: 1px 1px 15px var(--gray-1);
+  position: relative;
+}
+
+.new-robot-card {
+  height: 530px;
+}
+
+.robot-card h3, .new-robot-card h3 {
+  margin: 0;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.new-robot-card h3 {
+  padding-bottom: 40px;
+}
+
+.robot-card-img {
+  max-width: 100%;
+  max-height: 320px;
+  height: auto;
+  width: auto;
+  margin: auto;
+  display: block;
+}
+
+.vote-control-div, .robot-admin-control {
+  width: 100%;
+  position: absolute;
+  bottom: 25px;
+}
+
+.robot-admin-control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.robot-admin-control button {
+  width: 165px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-edit-button {
+  color: var(--white);
+  background-color: var(--gray-3);
+}
+
+.admin-edit-button:hover {
+  background-color: var(--gray-2);
+}
+
+.admin-delete-button {
+  background-color: var(--white);
+  color: var(--gray-3);
+  box-sizing: border-box;
+  border: 2px solid var(--gray-3);
+}
+
+.admin-delete-button:hover {
+  background-color: var(--gray-0);
+}
+
+.vote-control {
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  display: block;
+  margin: auto;
+  font-weight: bold;
+  background-color: var(--gray-3);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.vote-control:disabled {
+  cursor: auto;
+}
+
+.robot-total-control {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 25px;
+}
+
+.robot-total-control h2, .robot-total-control h3 {
+  display: inline-block;
+}
+
+.robot-total-control h3 {
+  color: var(--gray-2);
+}
+
+.progress-container {
+  border: 2px solid var(--gray-1);
+  width: 350px;
+  margin: auto;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.vote-count {
+  position: relative;
+  bottom: -15px;
+}
+
+.vote-count h2, .vote-count h3 {
+  margin: 0;
+}
+
+.total-progress {
+  border-radius: 5px;
+  background-color: var(--gray-3);
+  height: 35px;
+}
+
+.upload-file {
+  width: 349px;
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 2px dashed var(--gray-2);
+  margin: auto;
+  background-color: var(--gray-0);
+  color: var(--gray-3);
+}
+
+.upload-file h3 {
+  text-transform: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-button-div {
+  width: 100%;
+  margin: 12px auto;
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 0px;
+}
+
+.add-robot-button {
+  width: 230px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--gray-3);
+}
+
+.add-robot-button:disabled {
+  cursor: auto;
+}
+
+.clear-robot-button {
+  width: 95px;
+  background-color: var(--white);
+  font-size: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.loaded-file {
+  max-width: 349px;
+  max-height: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin: auto;
+  background-color: var(--gray-0);
+}
+
+.upload-icon {
+  padding-bottom: 15px;
+}
+
+.loading {
+  margin: auto;
+  text-align: center;
+  margin-top: 200px;
+  animation: loadSpinner 1s infinite;
+}
+
+@keyframes loadSpinner {
+  0% { transform: rotate(0deg); }
+  45% { transform: rotate(180deg); }
+  90% { transform: rotate(360deg); }
+
+}
+
+@media (max-width: 1399px) {
+
+  .login {
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .nav-logo {
+    padding-left: 0px;
+  }
+
+  .log-out {
+    padding-right: 35px;
+  }
+
+  .robots, .robot-results, .admin-view {
+    width: auto;
+    padding: 0 20px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 380px) {
+
+  html {
+    background-color: var(--white);
+  }
+
+  .login, .register {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .register {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .register input, .login input {
+    width: 287px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+
+  .register button, .login button {
+    width: 327px;
+    margin: auto;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .input-box label, .new-robot-input-box label {
+    left: 40px;
+  }
+
+  nav {
+    width: 100vw;
+    /* overflow-x: hidden; */
+  }
+
+  .robots, .robot-results, .admin-view {
+    padding: 0;
+  }
+
+  .robots h1, .robot-results h1, .admin-view h1 {
+    padding-left: 15px;
+  }
+
+  .robot-card, .new-robot-card {
+    width: 359px;
+    margin: 5px;
+  }
+
+  .robot-map {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 359px);
+    grid-gap: 5px;
+  }
+
+  .progress-container {
+    width: 311px;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  
+  .nav-logo {
+    padding-left: 25px;
+  }
+
+  .mobileNav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobileNav li {
+    padding-left: 0;
+  }
+
+  .mobileNavLi li h2 {
+    margin: 0;
+  }
+
+  .hamburger {
+    padding-right: 25px;
+  }
 }

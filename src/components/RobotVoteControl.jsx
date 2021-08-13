@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import UserContext from "../contexts/UserContext"
 
 const RobotVoteControl = (props) => {
@@ -10,8 +10,6 @@ const RobotVoteControl = (props) => {
     let voteData = {
       robot: props.id
     }
-    console.log(voteData)
-    console.log(UserContextData.userData.token)
 
     fetch('https://mondo-robot-art-api.herokuapp.com/votes/', {
       method: 'POST',
@@ -23,7 +21,6 @@ const RobotVoteControl = (props) => {
       body: JSON.stringify(voteData)
     })
       .then((response) => {
-        console.log(response)
         if (response.ok) {
           return response.json();
         } else {
@@ -31,18 +28,17 @@ const RobotVoteControl = (props) => {
         }
       })
       .then((data) => {
-        console.log(data)
         props.getRobots()
       })
       .catch((error) => {
-        console.log(error);
+
       });
 
   }
 
   return (
-    <div>
-      <button onClick={castVote} disabled={props.voteCast}>{ props.voteCastFor === props.id ? 'Vote Cast' : 'Vote' }</button>
+    <div className="vote-control-div">
+      <button className="vote-control" onClick={castVote} disabled={props.voteCast}>{ props.voteCastFor === props.id ? 'Vote Cast' : 'Vote' }</button>
     </div>
   )
 }

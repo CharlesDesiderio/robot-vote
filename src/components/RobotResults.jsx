@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../contexts/UserContext';
+import Loading from './Loading';
 import RobotCard from './RobotCard';
 
 const RobotResults = () => {
@@ -10,7 +11,6 @@ const RobotResults = () => {
   const UserContextData = useContext(UserContext);
 
   useEffect(() => {
-    console.log(UserContextData);
 
     fetch('https://mondo-robot-art-api.herokuapp.com/robots', {
       method: 'GET',
@@ -52,20 +52,21 @@ const RobotResults = () => {
 
       })
       .catch((error) => {
-        console.log(error);
+
       });
   }, []);
 
-console.log('votes', votes)
-console.log(robots)
 
   return dataLoaded ? (
-    <div>
-      {robots.map((robot) => {
-        return <RobotCard name={robot.name} url={robot.url} id={robot.id} totalVotes={votes.length} voteCount={votes.filter((vote) => vote.robot === robot.id).length} from="robotResults" />;
-      })}
+    <div className="robot-results">
+      <h1>Results</h1>
+      <div className="robot-map">
+        {robots.map((robot) => {
+          return <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} totalVotes={votes.length} voteCount={votes.filter((vote) => vote.robot === robot.id).length} from="robotResults" />;
+        })}
+      </div>
     </div>
-  ) : 'loading...'
+  ) : <Loading />
 }
 
 export default RobotResults

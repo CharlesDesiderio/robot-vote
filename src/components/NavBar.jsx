@@ -2,6 +2,8 @@ import { useContext, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import UserContext from "../contexts/UserContext"
 import logo from '../images/MR-Logo 1.svg'
+import hamburger from '../images/hamburger.svg'
+import xIcon from '../images/X.svg'
 
 const NavBar = () => {
 
@@ -15,7 +17,16 @@ const NavBar = () => {
     email: ''
   };
 
-  const [loggedOut, setLoggedOut] = useState(false)
+  const [menuStyle, setMenuStyle] = useState('none')
+
+  const showMenu = () => {
+    setMenuStyle('block')
+  }
+
+  const hideMenu = () => {
+    setMenuStyle('none')
+  }
+
 
   const logOut = () => {
     fetch('https://mondo-robot-art-api.herokuapp.com/auth/session', {
@@ -28,15 +39,13 @@ const NavBar = () => {
     })
     .then((response) => {
       if (response.ok) {
-        console.log('Session deleted')
-        setLoggedOut(true)
         UserContextData.setUserData(initialUserData)
       } else {
         throw new Error('Session Delete Failed');
       }
     })
     .catch((error) => {
-      console.log(error);
+
     });
   }
 
@@ -44,15 +53,32 @@ const NavBar = () => {
     <UserContext.Consumer>
       {context => (
         <nav>
+          <ul className="mobileNav">
+            <li><img className="nav-logo" alt="Mondo Robot Logo" src={logo} /></li>
+            <li><img className="hamburger" alt="Mondo Robot Logo" src={hamburger} onClick={showMenu} /></li>
+          </ul>
 
-          <ul>
+          <div style={{ display: menuStyle }} className="mobileNavMenu">
+            <div className="xBox"><img className="xIcon" src={xIcon} alt="X" onClick={hideMenu} /></div>
+            <ul className="mobileNavLi">
+              <li onClick={hideMenu} ><h2><Link to="/user/robots">Robots</Link></h2></li>
+              <li onClick={hideMenu} ><h2><Link to="/user/results">Results</Link></h2></li>
+              { context.userData.email === 'admin@mondorobot.com' ? <li onClick={hideMenu} ><h2><Link to="/user/admin">Admin</Link></h2></li> : '' }
+              
+              <li className="log-out" onClick={logOut}><h2>Log Out</h2></li>
+
+            </ul>
+
+          </div>
+
+          <ul className="desktopNav">
             <li><img className="nav-logo" alt="Mondo Robot Logo" src={logo} /></li>
             <li><Link to="/user/robots">Robots</Link></li>
             <li><Link to="/user/results">Results</Link></li>
             { context.userData.email === 'admin@mondorobot.com' ? <li><Link to="/user/admin">Admin</Link></li> : '' }
           </ul>
-          <ul className="user-interactions">
-            <li>{context.userData.name}</li>
+          <ul className="desktopNav user-interactions">
+            <li className="nav-name">{context.userData.name}</li>
             <li className="log-out" onClick={logOut}>Log Out</li>
           </ul>
         </nav>

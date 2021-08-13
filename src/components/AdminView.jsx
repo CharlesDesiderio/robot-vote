@@ -10,7 +10,6 @@ const AdminView = () => {
   const UserContextData = useContext(UserContext);
 
   const getRobots = () => {
-    console.log(UserContextData);
 
     fetch('https://mondo-robot-art-api.herokuapp.com/robots', {
       method: 'GET',
@@ -31,7 +30,7 @@ const AdminView = () => {
         setRobots(data);
       })
       .catch((error) => {
-        console.log(error);
+
       });
   }
 
@@ -40,11 +39,14 @@ const AdminView = () => {
   }, [])
 
   return robots.length > 0 ? (
-    <div>
-      <AddNewRobotCard getRobots={getRobots} />
-      {robots.map((robot) => (
-        <RobotCard name={robot.name} url={robot.url} id={robot.id} getRobots={getRobots} from="adminView" />
-      ))}
+    <div className="admin-view">
+      <h1>Admin</h1>
+      <div className="robot-map">
+        <AddNewRobotCard getRobots={getRobots} />
+        {robots.map((robot) => (
+          <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} getRobots={getRobots} from="adminView" />
+        ))}
+        </div>
     </div>
   ) : 'loading'
 }

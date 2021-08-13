@@ -18,10 +18,9 @@ const RobotCard = (props) => {
   }
 
   return (
-    <div>
-      <h2>{props.name}</h2>
-      <img alt={props.name} src={props.url} />
-
+    <div className="robot-card">
+      <h3>{props.name}</h3>
+      <img className="robot-card-img" alt={props.name} src={props.url} />
       {controlSelect()}
     </div>
   )

@@ -110,13 +110,7 @@ const App = () => {
         }
       })
       .then((data) => {
-        let newUserData = {
-          loggedIn: true,
-          id: data.id,
-          name: data.name,
-          email: data.email,
-        };
-        setUserData(newUserData);
+        attemptLogin(email, password)
       })
       .catch((error) => {
         setErrorMessage('Invalid User.');
