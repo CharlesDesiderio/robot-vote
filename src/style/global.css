@@ -482,7 +482,7 @@ li a:visited {
 
 }
 
-@media (max-width: 1399px) {
+@media all and (max-width: 1399px) {
 
   .login {
     margin: auto;
@@ -508,7 +508,7 @@ li a:visited {
   }
 }
 
-@media (max-width: 380px) {
+@media all and (max-width: 380px) {
 
   html {
     background-color: var(--white);
