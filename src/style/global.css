@@ -508,7 +508,7 @@ li a:visited {
   }
 }
 
-@media all and (max-width: 380px) {
+@media all and (max-width: 550px) {
 
   html {
     background-color: var(--white);
