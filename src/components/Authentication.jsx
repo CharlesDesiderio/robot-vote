@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Login from './Login';
