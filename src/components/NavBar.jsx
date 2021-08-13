@@ -62,9 +62,9 @@ const NavBar = () => {
           <div style={{ display: menuStyle }} className="mobileNavMenu">
             <div className="xBox"><img className="xIcon" src={xIcon} alt="X" onClick={hideMenu} /></div>
             <ul className="mobileNavLi">
-              <li onClick={hideMenu} ><h2><Link to="/user/robots">Robots</Link></h2></li>
-              <li onClick={hideMenu} ><h2><Link to="/user/results">Results</Link></h2></li>
-              { context.userData.email === 'admin@mondorobot.com' ? <li onClick={hideMenu} ><h2><Link to="/user/admin">Admin</Link></h2></li> : '' }
+              <li onClick={hideMenu} ><h2><Link to="/app/robots">Robots</Link></h2></li>
+              <li onClick={hideMenu} ><h2><Link to="/app/results">Results</Link></h2></li>
+              { context.userData.email === 'admin@mondorobot.com' ? <li onClick={hideMenu} ><h2><Link to="/app/admin">Admin</Link></h2></li> : '' }
               
               <li className="log-out" onClick={logOut}><h2>Log Out</h2></li>
 
@@ -74,12 +74,12 @@ const NavBar = () => {
 
           <ul className="desktopNav">
             <li><img className="nav-logo" alt="Mondo Robot Logo" src={logo} /></li>
-            <li><Link to="/user/robots">Robots</Link></li>
-            <li><Link to="/user/results">Results</Link></li>
+            <li><Link to="/app/robots">Robots</Link></li>
+            <li><Link to="/app/results">Results</Link></li>
 
           </ul>
           <ul className="desktopNav user-interactions">
-            { context.userData.email === 'admin@mondorobot.com' ? <li><Link to="/user/admin">Admin</Link></li> : '' }
+            { context.userData.email === 'admin@mondorobot.com' ? <li><Link to="/app/admin">Admin</Link></li> : '' }
             <li><button className="log-out" onClick={logOut}>Log Out</button></li>
           </ul>
         </nav>

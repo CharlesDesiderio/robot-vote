@@ -3,6 +3,7 @@ import env from 'react-dotenv';
 import UserContext from '../contexts/UserContext';
 import Loading from './Loading';
 import RobotCard from './RobotCard';
+import RobotVoteControl from './RobotVoteControl';
 
 const Robots = () => {
   let [robots, setRobots] = useState([]);
@@ -102,7 +103,9 @@ const Robots = () => {
       {userVoteData.voteId ? <button className="deleteVote" onClick={deleteVote}>Delete Vote</button> : ''}
       <div className="robot-map">
       {robots.map((robot) => {
-        return <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} getRobots={getRobots} from="robotVote" />;
+        return <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} getRobots={getRobots}>
+          <RobotVoteControl getRobots={getRobots} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} />  
+        </RobotCard>;
       })}
 
       </div>

@@ -124,12 +124,12 @@ const App = () => {
       <UserContext.Provider value={{ userData, setUserData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }} >
         <BrowserRouter>
           <Route exact path="/">
-            {userData.loggedIn ? <Redirect to="/user/robots" /> : <Authentication />}
+            {userData.loggedIn ? <Redirect to="/app/robots" /> : <Authentication />}
           </Route>
-            <Route path="/user/" component={NavBar} />
-            <Route path="/user/robots" component={Robots} />
-            <Route path="/user/results" component={RobotResults} />
-            <Route path="/user/admin" component={AdminView} />
+            <Route path="/app/" component={NavBar} />
+            <Route path="/app/robots" component={Robots} />
+            <Route path="/app/results" component={RobotResults} />
+            <Route path="/app/admin" component={AdminView} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>

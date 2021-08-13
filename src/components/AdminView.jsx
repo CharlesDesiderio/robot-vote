@@ -4,6 +4,7 @@ import UserContext from '../contexts/UserContext'
 import RobotCard from './RobotCard'
 import Loading from './Loading'
 import env from 'react-dotenv'
+import RobotAdminControl from './RobotAdminControl'
 
 const AdminView = () => {
 
@@ -46,7 +47,9 @@ const AdminView = () => {
       <div className="robot-map">
         <AddNewRobotCard getRobots={getRobots} />
         {robots.map((robot) => (
-          <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} getRobots={getRobots} from="adminView" />
+          <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} getRobots={getRobots}>
+            <RobotAdminControl getRobots={getRobots} id={robot.id} />
+          </RobotCard>
         ))}
         </div>
     </div>
