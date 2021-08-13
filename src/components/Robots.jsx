@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../contexts/UserContext';
+import Loading from './Loading';
 import RobotCard from './RobotCard';
 
 const Robots = () => {
@@ -21,21 +22,19 @@ const Robots = () => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('deleted')
           getRobots()
         } else {
           throw new Error('Vote Delete Failed');
         }
       })
       .catch((error) => {
-        console.log(error);
+
       });
 
       
   }
 
   const getRobots = () => {
-    console.log(UserContextData);
 
     fetch('https://mondo-robot-art-api.herokuapp.com/robots', {
       method: 'GET',
@@ -56,7 +55,7 @@ const Robots = () => {
         setRobots(data);
       })
       .catch((error) => {
-        console.log(error);
+
       });
 
       fetch('https://mondo-robot-art-api.herokuapp.com/votes', {
@@ -80,8 +79,6 @@ const Robots = () => {
           let voteCastFor = voteCast ? data.filter((x) => x.user === UserContextData.userData.id)[0].robot : ''
           let voteId = voteCast ? data.filter((x) => x.user === UserContextData.userData.id)[0].id : ''
 
-          console.log(voteCast, voteCastFor)
-
           setUserVoteData({
             voteCast: voteCast,
             voteCastFor: voteCastFor,
@@ -90,7 +87,7 @@ const Robots = () => {
           })
         })
         .catch((error) => {
-          console.log(error);
+
         });
   }
 
@@ -100,13 +97,16 @@ const Robots = () => {
   }, []);
 
   return userVoteData.votesLoaded === true ? (
-    <div>
-      {userVoteData.voteId ? <button onClick={deleteVote}>Delete Vote</button> : ''}
+    <div className="robots"><h1>Robots</h1>
+      {userVoteData.voteId ? <button className="deleteVote" onClick={deleteVote}>Delete Vote</button> : ''}
+      <div className="robot-map">
       {robots.map((robot) => {
-        return <RobotCard name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} getRobots={getRobots} from="robotVote" />;
+        return <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} getRobots={getRobots} from="robotVote" />;
       })}
+
+      </div>
     </div>
-  ) : 'loading';
+  ) : <Loading />;
 };
 
 export default Robots;

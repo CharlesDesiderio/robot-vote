@@ -15,7 +15,6 @@ const RobotAdminControl = (props) => {
       },
     })
       .then((response) => {
-        console.log(response)
         if (response.ok) {
           props.getRobots()
         } else {
@@ -25,9 +24,9 @@ const RobotAdminControl = (props) => {
   }
 
   return (
-    <div>
-      <button onClick={() => alert(`404 Feature Not Found`)}>Edit</button>
-      <button onClick={deleteRobot}>Delete</button>
+    <div className="robot-admin-control">
+      <button className="admin-edit-button" onClick={() => alert(`404 Feature Not Found`)}>Edit</button>
+      <button className="admin-delete-button" onClick={deleteRobot}>Delete</button>
     </div>
   )
 }

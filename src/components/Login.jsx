@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
+
+import logo from '../images/MR-Logo 1.svg'
 
 const Login = () => {
   
@@ -15,11 +18,21 @@ const Login = () => {
   return (
       <UserContext.Consumer>
         {context => (
-          <div>
-            <input name="email" value={input['email']} onChange={handleChange} type="email" />
-            <input name="password" value={input['password']} onChange={handleChange} type="password" />
+          <div className="login">
+            <img className="logo-image" alt="Mondo Robot Logo" src={logo} />
+            <div className="input-box">
+              <label htmlFor="email">Email</label>
+              <input name="email" value={input['email']} onChange={handleChange} type="email" />
+            </div>
+            <div className="input-box">
+              <label htmlFor="password">Password</label>
+              <input name="password" value={input['password']} onChange={handleChange} type="password" />
+            </div>
             { context.errorMessage ? <span>{context.errorMessage}</span> : '' }
-            <button onClick={() => context.attemptLogin(input['email'], input['password'])}>Log In</button>
+            <button className="login-button" onClick={() => context.attemptLogin(input['email'], input['password'])}>Log In</button>
+            
+              <Link className="link" to="/register"><button className="back" >Register</button></Link>
+            
           </div>
         )}
 
