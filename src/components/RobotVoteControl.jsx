@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import env from 'react-dotenv';
 import UserContext from "../contexts/UserContext"
 
 const RobotVoteControl = (props) => {
@@ -14,7 +15,7 @@ const RobotVoteControl = (props) => {
     fetch('https://mondo-robot-art-api.herokuapp.com/votes/', {
       method: 'POST',
       headers:{
-        'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+        'x-robot-art-api-key': env.API_KEY,
         Authorization: `Bearer ${UserContextData.userData.token}`,
         'Content-Type': 'application/json',
       },

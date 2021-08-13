@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import logo from '../images/MR-Logo 1.svg'
@@ -11,9 +11,15 @@ const Register = () => {
     password: ''
   })
 
+  const UserContextData = useContext(UserContext);
+
   const handleChange = (event) => setInput({...input,
     [event.currentTarget.name]: event.currentTarget.value
   })
+
+  useEffect(() => {
+    UserContextData.setErrorMessage('')
+  }, [])
 
   return (
     <UserContext.Consumer>

@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from 'react'
 import AddNewRobotCard from "./AddNewRobotCard"
 import UserContext from '../contexts/UserContext'
 import RobotCard from './RobotCard'
+import Loading from './Loading'
+import env from 'react-dotenv'
 
 const AdminView = () => {
 
@@ -14,7 +16,7 @@ const AdminView = () => {
     fetch('https://mondo-robot-art-api.herokuapp.com/robots', {
       method: 'GET',
       headers: {
-        'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+        'x-robot-art-api-key': env.API_KEY,
         Authorization: `Bearer ${UserContextData.userData.token}`,
         'Content-Type': 'application/json',
       },
@@ -48,7 +50,6 @@ const AdminView = () => {
         ))}
         </div>
     </div>
-  ) : 'loading'
-}
+  ) : <Loading /> }
 
 export default AdminView

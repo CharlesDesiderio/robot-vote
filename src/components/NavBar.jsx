@@ -4,6 +4,7 @@ import UserContext from "../contexts/UserContext"
 import logo from '../images/MR-Logo 1.svg'
 import hamburger from '../images/hamburger.svg'
 import xIcon from '../images/X.svg'
+import env from 'react-dotenv';
 
 const NavBar = () => {
 
@@ -32,7 +33,7 @@ const NavBar = () => {
     fetch('https://mondo-robot-art-api.herokuapp.com/auth/session', {
       method: 'DELETE',
       headers: {
-        'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+        'x-robot-art-api-key': env.API_KEY,
         Authorization: `Bearer ${UserContextData.userData.token}`,
         'Content-Type': 'application/json',
       }
@@ -75,11 +76,11 @@ const NavBar = () => {
             <li><img className="nav-logo" alt="Mondo Robot Logo" src={logo} /></li>
             <li><Link to="/user/robots">Robots</Link></li>
             <li><Link to="/user/results">Results</Link></li>
-            { context.userData.email === 'admin@mondorobot.com' ? <li><Link to="/user/admin">Admin</Link></li> : '' }
+
           </ul>
           <ul className="desktopNav user-interactions">
-            <li className="nav-name">{context.userData.name}</li>
-            <li className="log-out" onClick={logOut}>Log Out</li>
+            { context.userData.email === 'admin@mondorobot.com' ? <li><Link to="/user/admin">Admin</Link></li> : '' }
+            <li><button className="log-out" onClick={logOut}>Log Out</button></li>
           </ul>
         </nav>
       )}

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
+import env from "react-dotenv";
+
 import './style/global.css'
 
 import UserContext from './contexts/UserContext';
@@ -44,7 +46,7 @@ const App = () => {
     fetch('https://mondo-robot-art-api.herokuapp.com/auth/session', {
       method: 'POST',
       headers: {
-        'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+        'x-robot-art-api-key': env.API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(loginData),
@@ -62,7 +64,7 @@ const App = () => {
         fetch('https://mondo-robot-art-api.herokuapp.com/auth/session', {
           method: 'GET',
           headers: {
-            'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+            'x-robot-art-api-key': env.API_KEY,
             Authorization: `Bearer ${token.token}`,
             'Content-Type': 'application/json',
           },
@@ -97,7 +99,7 @@ const App = () => {
     fetch('https://mondo-robot-art-api.herokuapp.com/auth/register', {
       method: 'POST',
       headers: {
-        'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+        'x-robot-art-api-key': env.API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newUser),

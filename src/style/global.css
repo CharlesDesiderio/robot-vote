@@ -238,6 +238,9 @@ li a:visited {
 }
 
 .log-out {
+  font-size: 18px;
+  color: var(--gray-3);
+  background-color: var(--white);
   padding-right: 100px;
   cursor: pointer;
 }
@@ -498,6 +501,8 @@ li a:visited {
   }
 
   .log-out {
+    color: var(--white);
+    background-color: var(--gray-3);
     padding-right: 35px;
   }
 
@@ -541,8 +546,13 @@ li a:visited {
     margin-bottom: 20px;
   }
   
+.input-box, .new-robot-input-box {
+  width: 327px;
+  margin: auto;
+}
+
   .input-box label, .new-robot-input-box label {
-    left: 40px;
+    left: 30px;
   }
 
   nav {
@@ -552,6 +562,10 @@ li a:visited {
 
   .robots, .robot-results, .admin-view {
     padding: 0;
+  }
+
+  .robot-map {
+    margin: auto;
   }
 
   .robots h1, .robot-results h1, .admin-view h1 {
@@ -564,7 +578,8 @@ li a:visited {
   }
 
   .robot-map {
-    width: 100%;
+    width: 359px;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, 359px);
     grid-gap: 5px;

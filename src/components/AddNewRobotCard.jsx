@@ -1,4 +1,5 @@
 import { createRef, useState, useContext } from 'react'
+import env from 'react-dotenv';
 import UserContext from "../contexts/UserContext"
 import uploadIcon from '../images/upload-icon.svg'
 
@@ -45,7 +46,7 @@ const AddNewRobotCard = (props) => {
     fetch(`https://mondo-robot-art-api.herokuapp.com/robots`, {
       method: 'POST',
       headers:{
-        'x-robot-art-api-key': '346ee7ddde4bb72637e20fe9eff91306',
+        'x-robot-art-api-key': env.API_KEY,
         Authorization: `Bearer ${UserContextData.userData.token}`,
         // 'Content-Type': 'multipart/form-data',
       },
