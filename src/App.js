@@ -24,6 +24,7 @@ const App = () => {
 
   const [userData, setUserData] = useState(initialUserData);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isAuthing, setIsAuthing] = useState(false)
 
   const updateUserData = (data) => {
     let newUserData = {
@@ -37,6 +38,7 @@ const App = () => {
   };
 
   const attemptLogin = (email, password) => {
+    setIsAuthing(true)
     setErrorMessage('')
     let loginData = {
       email: email,
@@ -79,17 +81,20 @@ const App = () => {
               email: data.email,
             };
             setUserData(newUserData);
+            setIsAuthing(false)
           });
       })
       .catch((error) => {
         setErrorMessage(
           'Failed to login. Please check credentials and try again.'
         );
+        setIsAuthing(false)
       });
   };
 
   const attemptRegister = (fullName, email, password) => {
     setErrorMessage('')
+    setIsAuthing(true)
     let newUser = {
       name: fullName,
       email: email,
@@ -113,9 +118,11 @@ const App = () => {
       })
       .then((data) => {
         attemptLogin(email, password)
+        setIsAuthing(false)
       })
       .catch((error) => {
         setErrorMessage('Invalid User.');
+        setIsAuthing(false)
       });
   };
 
@@ -124,7 +131,7 @@ const App = () => {
       <UserContext.Provider value={{ userData, setUserData, updateUserData, attemptLogin, attemptRegister, errorMessage, setErrorMessage }} >
         <BrowserRouter>
           <Route exact path="/">
-            {userData.loggedIn ? <Redirect to="/app/robots" /> : <Authentication />}
+            {userData.loggedIn ? <Redirect to="/app/robots" /> : <Authentication isAuthing={isAuthing} />}
           </Route>
             <Route path="/app/" component={NavBar} />
             <Route path="/app/robots" component={Robots} />

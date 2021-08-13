@@ -4,7 +4,7 @@ import UserContext from '../contexts/UserContext'
 
 import logo from '../images/MR-Logo 1.svg'
 
-const Login = () => {
+const Login = (props) => {
   
   const [input, setInput] = useState({
     email: '',
@@ -39,7 +39,7 @@ const Login = () => {
                 <input id="password" name="password" value={input['password']} onChange={handleChange} type="password" />
               </div>
               { context.errorMessage ? <span className="errorMessage">{context.errorMessage}</span> : '' }
-              <button className="login-button" type="submit">Log In</button>
+              <button disabled={props.isAuthing} className="login-button" type="submit">Log In</button>
               
             </form>
               <Link className="link" to="/register"><button className="back" >Register</button></Link>

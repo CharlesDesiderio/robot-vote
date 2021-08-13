@@ -262,7 +262,7 @@ li a:visited {
   padding: 0 100px;
 }
 
-.robots, .robot-results, .admin-view h1 {
+.robots, .robot-results, .admin-view {
   padding-left: 15px;
 }
 
@@ -507,6 +507,10 @@ li a:visited {
   font-weight: bold;
   color: var(--white);
   background-color: var(--gray-3);
+}
+
+.add-robot-button:hover {
+  animation: pulse 1s infinite;
 }
 
 .add-robot-button:disabled {

@@ -1,12 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import env from 'react-dotenv';
 import UserContext from "../contexts/UserContext"
 
 const RobotAdminControl = (props) => {
 
   const UserContextData = useContext(UserContext);
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const deleteRobot = () => {
+    setIsDeleting(true)
     fetch(`https://mondo-robot-art-api.herokuapp.com/robots/${props.id}`, {
       method: 'DELETE',
       headers:{
@@ -26,8 +28,8 @@ const RobotAdminControl = (props) => {
 
   return (
     <div className="robot-admin-control">
-      <button className="admin-edit-button" onClick={() => alert(`404 Feature Not Found`)}>Edit</button>
-      <button className="admin-delete-button" onClick={deleteRobot}>Delete</button>
+      <button className="admin-edit-button" onClick={() => alert(`Feature Not Found`)}>Edit</button>
+      <button className="admin-delete-button" disabled={isDeleting} onClick={deleteRobot}>Delete</button>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import logo from '../images/MR-Logo 1.svg'
 
-const Register = () => {
+const Register = (props) => {
   
   const [input, setInput] = useState({
     fullName: '',
@@ -47,7 +47,7 @@ const Register = () => {
           </div>
 
           { context.errorMessage ? <span className="errorMessage">{context.errorMessage}</span> : '' }
-          <button className="register-button" type="submit">Register</button>
+          <button disabled={props.isAuthing} className="register-button" type="submit">Register</button>
           </form>
             <Link to="/"><button className="back" >Back to Login</button></Link>
         </div>

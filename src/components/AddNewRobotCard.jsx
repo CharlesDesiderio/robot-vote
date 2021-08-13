@@ -11,6 +11,7 @@ const AddNewRobotCard = (props) => {
   const [input, setInput] = useState({
     robotName: ''
   })
+  const [isSending, setIsSending] = useState(false)
 
   const handleChange = (event) => setInput({...input,
     [event.currentTarget.name]: event.currentTarget.value
@@ -38,7 +39,7 @@ const AddNewRobotCard = (props) => {
   }
 
   const sendFile = () => {
-
+    setIsSending(true)
     let data = new FormData()
     data.append('image', file.file);
     data.append('name', input['robotName'])
@@ -58,8 +59,10 @@ const AddNewRobotCard = (props) => {
           setInput({
             robotName: ''
           })
+          setIsSending(false)
           props.getRobots()
         } else {
+          setIsSending(false)
           throw new Error('Robot Upload Failed');
         }
       })
@@ -77,7 +80,7 @@ const AddNewRobotCard = (props) => {
       <input style={{ display: 'none' }} type="file" ref={fileRef} onChange={loadFile} />
       <div className="admin-button-div">
         <button className="clear-robot-button" onClick={clearData}>Clear</button>
-        <button className="add-robot-button" disabled={!file.file || !input['robotName']} onClick={sendFile}>Add Robot</button>
+        <button className="add-robot-button" disabled={!file.file || !input['robotName'] || isSending} onClick={sendFile}>Add Robot</button>
 
       </div>
     </div>
