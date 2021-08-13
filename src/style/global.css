@@ -13,6 +13,10 @@ body {
   padding: 0;
 }
 
+a, a:visited {
+  color: var(--gray-3)
+}
+
 button, input {
   border-radius: 8px;
   border: none;
@@ -35,7 +39,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 60px;
-  padding: 60px 0;
+  padding: 60px 100px;
 }
 
 h2 {
@@ -137,6 +141,7 @@ a {
 }
 
 .register button, .login button {
+  display: block;
   width: 500px;
   margin: auto;
   height: 50px;
@@ -147,6 +152,13 @@ a {
   max-width: 233px;
   margin: auto;
   margin-bottom: 100px;
+}
+
+.errorMessage {
+  display: block;
+  text-align: center;
+  color: red;
+  padding-bottom: 14px;
 }
 
 .mobileNav {
@@ -197,14 +209,13 @@ li a:visited {
 }
 
 .mobileNavMenu {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: var(--gray-3);
   z-index: 2;
   display: none;
-  
 }
 
 .mobileNavMenu li, .mobileNavMenu a, .mobileNavMenu a:visited, .mobileNavMenu h2 {
@@ -256,6 +267,7 @@ li a:visited {
 }
 
 .deleteVote {
+  cursor: pointer;
   display: block;
   width: 160px;
   height: 50px;
@@ -267,11 +279,44 @@ li a:visited {
   background-color: var(--gray-3);
 }
 
+.poof, .poof:hover {
+  animation: poof 1s;
+}
+
+@keyframes poof {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.pulse:hover {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.1)
+  }
+  50% {
+    transform: scale(.90);
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
 .robot-map {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 397px);
   grid-gap: 25px;
+  justify-content: center;
 }
 
 .robot-card, .new-robot-card {
@@ -348,6 +393,21 @@ li a:visited {
 
 .admin-delete-button:hover {
   background-color: var(--gray-0);
+  animation: pop 1s;
+
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.2);
+
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .vote-control {
@@ -360,6 +420,11 @@ li a:visited {
   background-color: var(--gray-3);
   color: var(--white);
   cursor: pointer;
+  transition: .2s ease-in;
+}
+
+.vote-control:hover {
+  transform: scale(1.10);
 }
 
 .vote-control:disabled {
@@ -500,11 +565,9 @@ li a:visited {
     padding-left: 0px;
   }
 
-  .log-out {
-    color: var(--white);
-    background-color: var(--gray-3);
-    padding-right: 35px;
-  }
+.log-out {
+  padding-right: 20px;
+}
 
   .robots, .robot-results, .admin-view {
     width: auto;
@@ -546,10 +609,10 @@ li a:visited {
     margin-bottom: 20px;
   }
   
-.input-box, .new-robot-input-box {
-  width: 327px;
-  margin: auto;
-}
+  .input-box, .new-robot-input-box {
+    width: 327px;
+    margin: auto;
+  }
 
   .input-box label, .new-robot-input-box label {
     left: 30px;
@@ -557,7 +620,12 @@ li a:visited {
 
   nav {
     width: 100vw;
-    /* overflow-x: hidden; */
+  }
+
+  .log-out {
+    color: var(--white);
+    background-color: var(--gray-3);
+    padding-right: 35px;
   }
 
   .robots, .robot-results, .admin-view {

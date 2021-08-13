@@ -6,7 +6,11 @@ const RobotVoteControl = (props) => {
   
   const UserContextData = useContext(UserContext);
 
+  let buttonDisabled = () => (props.voteCast || props.isCasting)
+
   const castVote = () => {
+
+    props.setIsCasting(true)
 
     let voteData = {
       robot: props.id
@@ -32,14 +36,12 @@ const RobotVoteControl = (props) => {
         props.getRobots()
       })
       .catch((error) => {
-
       });
-
   }
 
   return (
     <div className="vote-control-div">
-      <button className="vote-control" onClick={castVote} disabled={props.voteCast}>{ props.voteCastFor === props.id ? 'Vote Cast' : 'Vote' }</button>
+      <button className="vote-control" onClick={castVote} disabled={buttonDisabled()}>{ props.voteCastFor === props.id ? 'Vote Cast' : 'Vote' }</button>
     </div>
   )
 }

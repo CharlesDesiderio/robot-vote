@@ -26,17 +26,22 @@ const Login = () => {
         {context => (
           <div className="login">
             <img className="logo-image" alt="Mondo Robot Logo" src={logo} />
-            <div className="input-box">
-              <label htmlFor="email">Email</label>
-              <input name="email" value={input['email']} onChange={handleChange} type="email" />
-            </div>
-            <div className="input-box">
-              <label htmlFor="password">Password</label>
-              <input name="password" value={input['password']} onChange={handleChange} type="password" />
-            </div>
-            { context.errorMessage ? <span>{context.errorMessage}</span> : '' }
-            <button className="login-button" onClick={() => context.attemptLogin(input['email'], input['password'])}>Log In</button>
-            
+            <form onSubmit={(event) => {
+              event.preventDefault()
+              context.attemptLogin(input['email'], input['password'])
+              }}>
+              <div className="input-box">
+                <label htmlFor="email">Email</label>
+                <input id="name" name="email" value={input['email']} onChange={handleChange} type="email" />
+              </div>
+              <div className="input-box">
+                <label htmlFor="password">Password</label>
+                <input id="password" name="password" value={input['password']} onChange={handleChange} type="password" />
+              </div>
+              { context.errorMessage ? <span className="errorMessage">{context.errorMessage}</span> : '' }
+              <button className="login-button" type="submit">Log In</button>
+              
+            </form>
               <Link className="link" to="/register"><button className="back" >Register</button></Link>
             
           </div>

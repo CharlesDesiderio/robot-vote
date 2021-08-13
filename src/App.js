@@ -130,6 +130,7 @@ const App = () => {
             <Route path="/app/robots" component={Robots} />
             <Route path="/app/results" component={RobotResults} />
             <Route path="/app/admin" component={AdminView} />
+            <Redirect from="*" to="/" />
         </BrowserRouter>
       </UserContext.Provider>
     </div>

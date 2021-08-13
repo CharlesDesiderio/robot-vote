@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import env from 'react-dotenv';
 import UserContext from '../contexts/UserContext';
 import Loading from './Loading';
@@ -11,9 +11,19 @@ const Robots = () => {
     votesLoaded: false
   });
 
+  const [isCasting, setIsCasting] = useState(false)
+
   const UserContextData = useContext(UserContext);
 
+  const deleteVoteButton = useRef();
+
   const deleteVote = () => {
+
+    setIsCasting(false)
+
+    deleteVoteButton.current.classList.remove('pulse')
+    deleteVoteButton.current.classList.add('poof')
+
     fetch(`https://mondo-robot-art-api.herokuapp.com/votes/${userVoteData.voteId}`, {
       method: 'DELETE',
       headers:{
@@ -32,8 +42,6 @@ const Robots = () => {
       .catch((error) => {
 
       });
-
-      
   }
 
   const getRobots = () => {
@@ -99,12 +107,13 @@ const Robots = () => {
   }, []);
 
   return userVoteData.votesLoaded === true ? (
-    <div className="robots"><h1>Robots</h1>
-      {userVoteData.voteId ? <button className="deleteVote" onClick={deleteVote}>Delete Vote</button> : ''}
+    <div className="robots">
+      <h1>Robots</h1>
+      {userVoteData.voteId ? <button className="pulse deleteVote" ref={deleteVoteButton} onClick={deleteVote}>Delete Vote</button> : ''}
       <div className="robot-map">
       {robots.map((robot) => {
         return <RobotCard key={robot.id} name={robot.name} url={robot.url} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} getRobots={getRobots}>
-          <RobotVoteControl getRobots={getRobots} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} />  
+          <RobotVoteControl setIsCasting={setIsCasting} isCasting={isCasting} getRobots={getRobots} id={robot.id} voteCast={userVoteData.voteCast} voteCastFor={userVoteData.voteCastFor} />  
         </RobotCard>;
       })}
 
